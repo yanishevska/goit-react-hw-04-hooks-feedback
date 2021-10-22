@@ -1,46 +1,63 @@
 import "./App.css";
-import { Component } from "react";
-import Section from "./Section";
-import FeedbackOptions from "./FeedbackOptions";
-import Statistics from "./Statistics";
-import Notification from "./Notification";
+import { useState } from "react";
+import Section from "./components/Section";
+import FeedbackOptions from "./components/FeedbackOptions";
+import Statistics from "./components/Statistics";
+import Notification from "./components/Notification";
 
-class App extends Component {
-  state = {
-    good: 0,
-    neutral: 0,
-    bad: 0,
-  };
-  handleIncrement = (value) => () => {
-    this.setState((prevState) => ({
-      [value]: prevState[value] + 1,
-    }));
+function App() {
+  const [good, setGood] = useState(0);
+  const [ neutral, setNeutral] = useState(0);
+  const [bad, setBad] = useState(0);
+
+ const handleIncrement = (option)  => {
+   switch (option) {
+     case "good":
+       setGood((prev) => prev + 1);
+       break;
+     
+    case "neutral":
+       setNeutral((prev) => prev + 1);
+       break;
+     
+     case "bad":
+       setBad((prev) => prev + 1);
+       break;
+     
+     default:
+       console.log(`We have not ${option} button`);
+       break;
+   }
+ };
+  
+  const countTotalFeedback = () => {
+   
+    return  good + neutral + bad;
   };
 
-  render() {
-    const { good, neutral, bad } = this.state;
-    const options = Object.keys(this.state);
-    const countTotalFeedback = good + neutral + bad;
-    const countPositiveFeedbackPercentage = Math.round(
-      (good / countTotalFeedback) * 100
-    );
+  const countPositiveFeedbackPercentage = () => {
+    const totalPercentage = Math.round(
+      (good / countTotalFeedback()) * 100);
+    return totalPercentage;
+  };
+
     return (
       <>
         <Section title={"Please leave feedback"}>
           <FeedbackOptions
-            options={options}
-            onLeaveFeedback={this.handleIncrement}
+            options={Object.keys({good,neutral,bad})}
+            onLeaveFeedback={handleIncrement}
           />
         </Section>
 
-        {countTotalFeedback > 0 ? (
+        {countTotalFeedback() > 0 ? (
           <Section title={"Statistics"}>
             <Statistics
               good={good}
               neutral={neutral}
               bad={bad}
-              total={countTotalFeedback}
-              positivePercentage={countPositiveFeedbackPercentage}
+              total={countTotalFeedback()}
+              positivePercentage={countPositiveFeedbackPercentage()}
             />
           </Section>
         ) : (
@@ -49,6 +66,5 @@ class App extends Component {
       </>
     );
   }
-}
 
 export default App;

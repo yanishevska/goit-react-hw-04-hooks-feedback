@@ -12,9 +12,20 @@
 }
 
 .btnFeedback:hover {
-  background-color: rgb(46, 41, 41);
+  background-color: rgb(20, 19, 19);
   color: white;
   box-shadow: rgba(250, 244, 244, 0.4) 0px 2px 4px,
     rgba(152, 144, 144, 0.3) 0px 7px 13px -3px,
     rgba(99, 97, 97, 0.2) 0px -3px 0px inset;
+}
+
+.btnFeedback:hover:nth-child(1) {
+  background-color: green;
+}
+.btnFeedback:hover:nth-child(2) {
+  background-color: rgb(255, 160, 122);
+}
+
+.btnFeedback:hover:nth-child(3) {
+  background-color: red;
 }
