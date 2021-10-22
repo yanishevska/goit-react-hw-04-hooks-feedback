@@ -1,0 +1,20 @@
+.btnFeedback {
+  width: 100px;
+  height: 40px;
+  margin: 7px;
+  border-radius: 30px;
+  border: none;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.btnFeedback:hover {
+  background-color: rgb(46, 41, 41);
+  color: white;
+  box-shadow: rgba(250, 244, 244, 0.4) 0px 2px 4px,
+    rgba(152, 144, 144, 0.3) 0px 7px 13px -3px,
+    rgba(99, 97, 97, 0.2) 0px -3px 0px inset;
+}
